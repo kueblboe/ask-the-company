@@ -46,6 +46,14 @@
   .ch.soon{color:var(--ink-faint);pointer-events:none}
   .ch .tag{margin-left:auto;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green)}
   .ch.soon .tag{color:var(--ink-faint)}
+  .ch.locked{color:var(--ink-dim)}
+  .ch.locked:hover .t{color:var(--green)}
+  .ch.locked .tag{color:var(--green);display:inline-flex;align-items:center;gap:.34em}
+  .ch .lock{flex:none;transform:translateY(.5px)}
+  .ch.more{color:var(--ink-faint)}
+  .ch.more .n{color:var(--ink-faint)}
+  .ch.more:hover .t{color:var(--green)}
+  .ch.more .tag{color:var(--ink-faint)}
   .listnote{color:var(--ink-faint);font-size:.92rem;margin-top:1.4rem;text-align:center}
   .reply{margin-top:2.6rem;font-size:.92rem;color:var(--ink-faint);font-style:italic}
   .reply a{color:var(--ink-dim)}
@@ -71,7 +79,10 @@
     <a class="ch live" href="notice.html"><span class="n">1</span><span class="t">Notice</span><span class="tag">Read now</span></a>
     <div class="ch soon"><span class="n">2</span><span class="t">Everyone's Disease</span><span class="tag">Soon</span></div>
     <div class="ch soon"><span class="n">3</span><span class="t">The Number</span><span class="tag">Soon</span></div>
-    <p class="listnote">The first three chapters will land on the website. Chapter 4 onward goes out by email, to subscribers only.<br><a href="https://book.newworkbydesign.com/signup">Subscribe to read the rest &rarr;</a></p>
+    <a class="ch locked" href="https://book.newworkbydesign.com/signup"><span class="n">4</span><span class="t">The Standard Package</span><span class="tag"><svg class="lock" viewBox="0 0 16 16" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="7.2" width="10" height="6.2" rx="1.4"/><path d="M5 7.2V5a3 3 0 0 1 6 0v2.2"/></svg>Subscribers</span></a>
+    <a class="ch locked" href="https://book.newworkbydesign.com/signup"><span class="n">5</span><span class="t">Who Decides</span><span class="tag"><svg class="lock" viewBox="0 0 16 16" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="7.2" width="10" height="6.2" rx="1.4"/><path d="M5 7.2V5a3 3 0 0 1 6 0v2.2"/></svg>Subscribers</span></a>
+    <a class="ch more" href="https://book.newworkbydesign.com/signup"><span class="n">+</span><span class="t">14 more nights</span><span class="tag">Subscribers</span></a>
+    <p class="listnote">The first three chapters land on the website. Chapter 4 onward goes out by email, to subscribers only.<br><a href="https://book.newworkbydesign.com/signup">Subscribe to read the rest &rarr;</a></p>
   </div>
 
   <p class="reply">One thing before you start: whose side are you on going in, the founder's or the company's? <a href="mailto:manuel@newworkbydesign.com?subject=Whose%20side%20I%27m%20on">Tell me.</a></p>
