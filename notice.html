@@ -70,6 +70,7 @@
   .readtime::before,.readtime::after{content:"·";margin:0 .6em;color:var(--ink-faint)}
 
   /* Body */
+  article{container-type:inline-size} /* query container so the artifact can size to fit */
   article p{margin:0 0 1.4rem}
   article p.first{margin-top:0}
   /* Drop the first paragraph's lead-in slightly larger */
@@ -78,7 +79,9 @@
   /* Survey artifact (the core samples) */
   pre.artifact{
     font-family:"DM Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-    font-size:.86rem;line-height:1.6;color:var(--ink);
+    font-size:.72rem; /* fallback: browsers without container-query units */
+    font-size:min(.86rem, calc((100cqi - 47px) / 45)); /* scale lines to fit: no sideways scroll */
+    line-height:1.6;color:var(--ink);
     background:#0d141b;border:1px solid var(--rule);border-left:3px solid var(--green);
     border-radius:8px;padding:1.25rem 1.3rem;margin:2rem 0;
     overflow-x:auto;white-space:pre;letter-spacing:.01em;
