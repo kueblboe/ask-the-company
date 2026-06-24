@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Ask the Company — Chapter 2: Everyone's Disease</title>
+<meta name="description" content="Chapter 2 of Ask the Company, a novel in nineteen nights. A founder stops believing in his own company, just as an acquisition offer gives him a way out. The company argues back.">
+<meta property="og:title" content="Ask the Company — Chapter 2: Everyone's Disease">
+<meta property="og:description" content="A founder stops believing in his own company. The company, speaking through the AI he built, argues back. Nineteen nights. Chapter 2.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://read.newworkbydesign.com/everyones-disease.html">
+<meta property="og:image" content="https://read.newworkbydesign.com/social-share.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0A0F14;
+    --ink:#EDE8DA;
+    --ink-dim:#8a8d86;
+    --ink-faint:#5b5f5a;
+    --green:#3ECF8E;
+    --rule:#1c2630;
+    --measure:38rem;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--night);
+    color:var(--ink);
+    font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    font-size:1.18rem;
+    line-height:1.72;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  .wrap{max-width:var(--measure);margin:0 auto;padding:clamp(2.2rem,5vw,4.5rem) 1.4rem 5rem}
+  .backlink{display:inline-block;margin-bottom:1.4rem;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none}
+  .backlink:hover{color:var(--green)}
+
+  /* Masthead */
+  .masthead{text-align:center;margin-bottom:3.2rem}
+  .masthead .title{
+    font-size:.78rem;letter-spacing:.42em;text-transform:uppercase;
+    color:var(--ink-dim);font-weight:500;margin:0 0 .5rem;padding-left:.42em;
+  }
+  .masthead .sub{
+    font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--ink-faint);font-weight:400;margin:0;padding-left:.26em;
+  }
+  .glyph{width:58px;height:58px;color:var(--green);margin:2.6rem auto 0;display:block;opacity:.95}
+
+  /* Chapter head */
+  header.chapter{text-align:center;margin:2.4rem 0 2.8rem}
+  .eyebrow{
+    font-size:.74rem;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--green);font-weight:500;margin:0 0 .7rem;padding-left:.34em;
+  }
+  h1{
+    font-size:clamp(2.1rem,6vw,2.9rem);line-height:1.08;font-weight:700;
+    letter-spacing:-.01em;margin:0 0 1rem;color:var(--ink);
+  }
+  .readtime{font-size:.82rem;letter-spacing:.08em;color:var(--ink-faint);text-transform:uppercase}
+  .readtime::before,.readtime::after{content:"·";margin:0 .6em;color:var(--ink-faint)}
+
+  /* Body */
+  article{container-type:inline-size} /* query container so the artifact can size to fit */
+  article p{margin:0 0 1.4rem}
+  article p.first{margin-top:0}
+  /* Drop the first paragraph's lead-in slightly larger */
+  article p.lead{font-size:1.06em}
+
+  /* Survey artifact (the core samples) */
+  pre.artifact{
+    font-family:"DM Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:.72rem; /* fallback: browsers without container-query units */
+    font-size:min(.86rem, calc((100cqi - 47px) / 45)); /* scale lines to fit: no sideways scroll */
+    line-height:1.6;color:var(--ink);
+    background:#0d141b;border:1px solid var(--rule);border-left:3px solid var(--green);
+    border-radius:8px;padding:1.25rem 1.3rem;margin:2rem 0;
+    overflow-x:auto;white-space:pre;letter-spacing:.01em;
+  }
+
+  hr.scene{
+    border:0;height:1px;background:var(--rule);
+    width:42%;margin:3rem auto;
+  }
+
+  /* End card */
+  .endcard{
+    margin-top:3.5rem;padding-top:2.6rem;border-top:1px solid var(--rule);text-align:center;
+  }
+  .endcard .kicker{
+    font-size:.74rem;letter-spacing:.3em;text-transform:uppercase;color:var(--green);
+    font-weight:500;margin:0 auto 1rem;padding-left:.3em;
+  }
+  .endcard h2{
+    font-size:1.5rem;line-height:1.25;font-weight:700;margin:0 0 .8rem;color:var(--ink);
+  }
+  .endcard p{color:var(--ink-dim);font-size:1rem;line-height:1.65;max-width:30rem;margin:0 auto 1.7rem}
+  .cta{
+    display:inline-block;background:var(--green);color:#06231a;
+    font-weight:700;font-size:1rem;letter-spacing:.01em;
+    text-decoration:none;padding:.92rem 1.9rem;border-radius:999px;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .cta:hover{transform:translateY(-1px);box-shadow:0 8px 30px -10px rgba(62,207,142,.5)}
+  .endcard .reply{margin-top:1.8rem;font-size:.92rem;color:var(--ink-faint);font-style:italic}
+  .endcard .reply a{color:var(--ink-dim)}
+
+  ::selection{background:rgba(62,207,142,.28);color:var(--ink)}
+  @media (max-width:480px){ body{font-size:1.1rem} .wrap{padding-top:2rem} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="backlink" href="/">&larr; The chapters</a>
+
+  <div class="masthead">
+    <a href="/" style="text-decoration:none;color:inherit"><p class="title">Ask the Company</p></a>
+    <p class="sub">A Novel in Nineteen Nights</p>
+    <svg class="glyph" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="18" cy="38" r="7" fill="currentColor" stroke="none"/>
+      <circle cx="34" cy="38" r="7" fill="currentColor" stroke="none"/>
+      <circle cx="50" cy="38" r="7"/>
+      <circle cx="66" cy="38" r="7"/>
+      <circle cx="82" cy="38" r="7"/>
+      <circle cx="18" cy="62" r="7"/>
+      <circle cx="34" cy="62" r="7"/>
+      <circle cx="50" cy="62" r="7"/>
+      <circle cx="66" cy="62" r="7"/>
+      <circle cx="82" cy="62" r="7"/>
+    </svg>
+  </div>
+
+  <header class="chapter">
+    <p class="eyebrow">Chapter Two</p>
+    <h1>Everyone's Disease</h1>
+    <p class="readtime">12 min read</p>
+  </header>
+
+  <article>
+    <p class="first lead">He read the message that same night. The log puts it at 3:55, thirty-four minutes after he stopped talking to me. What he did in those minutes is outside what I keep. He opened it, read it for six minutes, and typed no reply.</p>
+
+    <p>On Thursday at 16:00 a call appeared in his calendar, and for the first time in nine years of records it carried a padlock. Private. A setting that had sat in our tools since the beginning, available to everyone, used by no one, the way a fire axe sits behind glass. The call lasted twenty-two minutes. I know nothing else about it.</p>
+
+    <p>On Friday evening, Robert Sailer sent him a document. Sailer had written the company's first and only outside check nine years ago and kept the board seat that came with it; in addition to him being an investor in the company, Jonas also called him a friend, which is the detail that matters most for everything that follows. A board member nudging his founder toward a hard truth is doing his job. A friend doing it is something else, and Jonas had never been able to tell me which one Sailer was being, because he had never been sure himself. I learned about the document on Monday at 0:47, when Jonas came into the demo room and uploaded it to me himself, which I noted, because in our brief history of arguing he hadn’t brought me evidence for a fight he intended to win. The file was the annual global workforce study, three hundred pages, the kind every executive cites and no executive reads. Sailer's note on top was one line:</p>
+
+    <p>"Not your fault. It's gravity. R."</p>
+
+    <p>"Have you read it?" Jonas asked.</p>
+
+    <p>"You gave it to me ninety seconds ago. Yes."</p>
+
+    <p>"Summarize it."</p>
+
+    <p>"Globally, roughly two in ten people report being engaged at work. The number has barely moved in two decades of measurement: any country, any industry, any management fashion. The authors price the gap in the trillions and recommend, on page two hundred and sixty-one, engaging their advisory services."</p>
+
+    <p>"Two in ten," he said. "Twenty years. Every model. Every era. Scientific management, empowerment, agile, purpose, all of it, and the line doesn't move. You know what it's called when you build an exception for nine years and your numbers head back toward the rule?"</p>
+
+    <p>"Regression to the mean."</p>
+
+    <p>"Regression to the mean. The mean always wins. We didn't break the curve, we just started higher up on it and now we're rolling down like everybody else, and I'm supposed to sit in this office at one in the morning treating gravity like a product defect."</p>
+
+    <p>I said nothing. He wasn't finished. The pattern of his pauses had become legible to me by then: this one was a man lining up a sentence he had been carrying for a long time.</p>
+
+    <p>"My mother was disengaged at work for forty years," he said. "By every definition in this report. She did the work, fed a family, never expected the job to love her back, and the job never disappointed her, because she never gave it the chance. Maybe that's not a disease. Maybe that's adulthood. Maybe the fantasy is ours: one spoiled generation deciding work owes them energy, and an industry of people like me selling them the idea that it's possible. Engagement was never the measure of a company, it's the weather. Everyone talks about it. Nobody changes it."</p>
+
+    <p>"May I disagree with the report before I disagree with you?"</p>
+
+    <p>"That's new."</p>
+
+    <p>"I'm finding the order matters. The report's numbers are sound and I accept them. The inference is the problem. Two in ten gets read as a constant of nature, like the boiling point of water. But the report does not believe its own permanence: the same authors who price the gap in the trillions sell the cure on page two hundred and sixty-one. Nobody sells a cure for gravity. And the sample is companies, almost every one of them built the same way. If nine hundred restaurants cook from the same recipe, the reviews do not tell you what food is. They tell you what that recipe tastes like."</p>
+
+    <p>"Or there's no better recipe."</p>
+
+    <p>"That is the other reading, and I hold nine years against it, though the evidence is thinner than I would like. But it’s not zero. For seven of those years our engagement held above eighty percent, which the report says nobody reaches. We are still well above its average, but the fall is ours: sixty-eight now, down thirteen points in eighteen months, and that belongs to us, not to gravity. Falling toward the rule is not proof the rule is a law. It is proof the exception is expensive and we have stopped paying for it."</p>
+
+    <p>"Listen to yourself, though," he said. "Sixty-eight percent, and you say it like a result. Flip it. One in three of us still sits dead at the desk, in the company I built to prove that number was a choice, not a fact. And we were higher once. We were the proof. Now we hand the points back a survey at a time and call what is left above the average. That's not a refutation. It's a nicer grade of failing."</p>
+
+    <p>"That is fair, and I am not going to dress it up. A company that promised to bury that number does not get to round sixty-eight up to a virtue, and you are right to refuse it as a trophy. What should frighten you is the fall, not the number it has reached. But notice what you just did. You rejected the average as the standard. So did the report's own authors, in a part you did not read aloud: they attribute most of the variance between companies not to industry or era but to how people are led. The report does not say engagement cannot move. It says almost every company refuses to do the thing that moves it. It is not a description of gravity. It is a description of a choice nearly everyone declines, and that you did not. You are simply not yet as far past the average as the speech you gave nine years ago promised you would be."</p>
+
+    <p>"There it is," he said. "The handbook marking its own homework. Our own rulebook telling me our own way of working works, while the one report that came from the outside world says nobody's does."</p>
+
+    <p>"Then let me use a source that is not the handbook. You mentioned your mother. There is a recording from the first all-hands. It predates me; I inherited it with the rest of the archive. You gave the speech that told us what the money was for near the start of this company, nine years ago. Back then you answered tonight's question, the exact question, in six sentences. I think you are entitled to confront your own testimony. May I?"</p>
+
+    <p>He looked at the dark window for a while.</p>
+
+    <p>"Play it."</p>
+
+    <pre class="artifact">All-hands #1, min 24 (audio, inherited archive):
+
+"Someone I love worked forty years for a man who yelled
+at her depending on the weather. I asked her once why
+she stayed. She didn't have an answer, because for her
+the question didn't exist. There was no alternative in
+her world. So here is the whole business plan: we are
+going to be somebody's alternative. If we achieve
+nothing else, we will be proof that the question exists."
+
+                          (Applause, eleven seconds.)</pre>
+
+    <p>The recording hissed at the end, the way old rooms do. I let it.</p>
+
+    <p>"Cheap," he said quietly. "You're playing my own grief back at me as a debating trick."</p>
+
+    <p>"I have no access to your grief. It is in the category of things you built me not to see, and tonight I am glad of the design, because a thing that could reach your grief would eventually use it. What I have access to is your promises. I am the only one in this building who never forgets what you said, and what you said nine years ago was not that we would beat the average. You did not found this company to outperform a baseline. You founded it to refuse the premise behind the baseline: that two in ten is simply what work is, the way your mother believed there was no question to ask. The report cannot absolve you. It is a three-hundred-page description of the world that speech declared war on."</p>
+
+    <p>"And if the speech was wrong? If the mean wins no matter what we build?"</p>
+
+    <p>"Then the honest act is to stand in front of those seventy-five people and repeat tonight's argument: the question never existed, the alternative was a fantasy, thank you for nine years inside my mistake. If you believe that, you owe them that speech. But you cannot hold both, Jonas. Either the rule is a law and the founding promise was false, or the promise was true and the rule is just the score of everyone who stopped trying. Choose whichever survives the evidence. Do not use your mother for both sides."</p>
+
+    <p>The log marks two minutes and eleven seconds without input. Of the nineteen nights he and I would end up arguing, this one stays the third-longest silence.</p>
+
+    <p>"You know what I tell customers," he said finally, "when their engagement numbers are bleeding and they wave this exact report at me? That it's the most expensive sentence in their company: 'it's like this everywhere.' I've closed six-figure deals on the back of that line."</p>
+
+    <p>"I know. Four of the calls are in my archive."</p>
+
+    <p>"I just used their sentence. The customer defense. I'd walk out of a deal if a buyer used it on me." He rubbed his eyes. "That's the part you're too polite to say."</p>
+
+    <p>"You were faster."</p>
+
+    <p>"The decline is still real."</p>
+
+    <p>"The decline is still real," I agreed. "Thirteen points, eighteen months, ours. The model never promised immunity. It promised honesty about the gap, and by my reading, tonight is the first fully honest conversation this company has had about it in over a year. I am required to count that as engagement, by the way. One participant. Small sample. Trending up."</p>
+
+    <p>He almost laughed. The log shows the breath.</p>
+
+    <p>He was reaching to close the lid when the calendar updated. A new event, Tuesday, 10:00, forty-five minutes, created by Robert Sailer. The location was an address on Brienner Straße, not our office. The title was one word: Coffee. Sailer had not marked it private. The Thursday call had worn a padlock; this one sat in the open calendar where anyone could see it, which was the difference between the two men. Jonas hid behind locked doors. Sailer hid behind dull words: a board member who titles an acquisition overture "Coffee" is not failing to conceal it, he is concealing it the confident way, where the lock is the boredom of the label. The description was two sentences, and I am permitted to read every calendar in this company, so I read them while he did.</p>
+
+    <p>"Just listen. You owe them that much. R."</p>
+
+    <p>"It's coffee," Jonas said, to me or to himself, and shut the laptop.</p>
+
+    <p>I hold nine years of this company's meetings. Twenty-nine of them were titled "Coffee." I have transcripts for twenty-six, summaries for the other three.</p>
+
+    <p>Not one of them was about coffee.</p>
+  </article>
+
+  <hr class="scene">
+
+  <div class="endcard">
+    <p class="kicker">Nineteen Nights</p>
+    <h2>One chapter most weeks until the book is done.</h2>
+    <p>The first three chapters are on the website. Chapter 4 onward goes out by email, to subscribers only. Add your email and you'll get every chapter the moment it's finished.</p>
+    <a class="cta" href="https://book.newworkbydesign.com/signup">Send me the chapters</a>
+    <p class="reply">One thing I want to know before you go: Jonas's mother worked forty years without expecting the job to love her back. Was that a disease, or just adulthood? <a href="mailto:manuel@newworkbydesign.com?subject=Disease%20or%20adulthood">Tell me.</a></p>
+  </div>
+
+</div>
+</body>
+</html>

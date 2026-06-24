@@ -3,9 +3,9 @@
 sync-chapter.py — build/refresh a public chapter page from the manuscript.
 
 The manuscript ("../Building a Different Kind of Company - manuscript.md") is the
-single source of truth. This script regenerates the chapter BODY (and heading,
-read-time, and meta tags) on the matching HTML page. Run it after editing a
-chapter.
+single source of truth. This script regenerates, on the matching HTML page: the
+chapter BODY, heading, read-time and meta tags; the masthead GLYPH; and the
+endcard PROMPT. Run it after editing a chapter.
 
 Usage:
     python sync-chapter.py 1        # rebuild chapter 1  -> notice.html
@@ -20,17 +20,35 @@ Notes:
   * A new page is created from notice.html, so it inherits the same design.
   * The filename is the slug of the chapter title (e.g. "The Number" ->
     the-number.html). Chapter 1, "Notice", maps to notice.html.
+  * The masthead glyph is pulled from ../05-design/glyphs/chNN-*.svg (the design
+    single source of truth). If that file is missing, the existing glyph on the
+    page is left untouched.
+  * The endcard "Tell me" prompt is per-chapter; edit the PROMPTS table below.
   * This does not touch index.html — flip that chapter's row from "soon" to a
     link yourself when you're ready to list it.
 """
-import re, html, sys, os, unicodedata
+import re, html, sys, os, glob, unicodedata
+from urllib.parse import quote
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 MANUSCRIPT = os.path.join(HERE, "..", "Building a Different Kind of Company - manuscript.md")
 TEMPLATE = os.path.join(HERE, "notice.html")
+GLYPH_DIR = os.path.join(HERE, "..", "05-design", "glyphs")
 PUBLIC = (1, 2, 3)
-WORDS_PER_MIN = 200
+WORDS_PER_MIN = 150  # tuned to the book's actual readers: dense prose + non-native readers run well under the 200-265 web average
 ORD = {1: "One", 2: "Two", 3: "Three"}
+
+# Endcard "Tell me" prompt, per chapter: (question, plain-text mail subject).
+# The lead-in "One thing I want to know before you go:" is constant; vary the question.
+PROMPTS = {
+    1: ("whose side are you on, the founder's or the company's?",
+        "Whose side I'm on"),
+    2: ("Jonas's mother worked forty years without expecting the job to love her back. "
+        "Was that a disease, or just adulthood?",
+        "Disease or adulthood"),
+    3: ("Eighty million euros to walk away from the thing you built. Would you take it?",
+        "Eighty million"),  # DRAFT prompt — revise before ch3 goes public
+}
 
 
 def slugify(title):
@@ -87,6 +105,33 @@ def build_article(body_md):
     return article, max(1, round(words / WORDS_PER_MIN))
 
 
+def glyph_svg(n):
+    """The full masthead <svg> for chapter n, inner shapes pulled from
+    ../05-design/glyphs/chNN-*.svg. Returns None if no glyph file exists, so the
+    caller can leave the page's existing glyph alone."""
+    hits = sorted(glob.glob(os.path.join(GLYPH_DIR, f"ch{n:02d}-*.svg")))
+    if not hits:
+        return None
+    m = re.search(r"<svg[^>]*>(.*)</svg>", open(hits[0], encoding="utf-8").read(), re.S)
+    if not m:
+        return None
+    inner = "\n".join("      " + ln.strip() for ln in m.group(1).splitlines() if ln.strip())
+    # Standard wrapper: linecap+linejoin round so both dot-and-line and bracket glyphs render cleanly.
+    return ('<svg class="glyph" viewBox="0 0 100 100" fill="none" stroke="currentColor" '
+            'stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">\n'
+            f"{inner}\n    </svg>")
+
+
+def reply_html(n):
+    """The endcard reply paragraph for chapter n, or None if no prompt is defined
+    (in which case the page's existing prompt is left alone)."""
+    if n not in PROMPTS:
+        return None
+    q, subject = PROMPTS[n]
+    return ('<p class="reply">One thing I want to know before you go: '
+            f'{q} <a href="mailto:manuel@newworkbydesign.com?subject={quote(subject)}">Tell me.</a></p>')
+
+
 def sync(n):
     if n not in PUBLIC:
         sys.exit(f"Chapter {n} is not a public page (only {PUBLIC[0]}-{PUBLIC[-1]} are).")
@@ -114,6 +159,18 @@ def sync(n):
                rf"\g<1>Chapter {ORD[n]}\g<2>", s, count=1)
     s = re.sub(r'(<p class="readtime">)\d+ min read(</p>)',
                rf"\g<1>{readmin} min read\g<2>", s, count=1)
+
+    glyph = glyph_svg(n)                                                       # masthead mark
+    if glyph:
+        s = re.sub(r'<svg class="glyph".*?</svg>', lambda _: glyph, s, count=1, flags=re.S)
+    else:
+        print(f"  note: no glyph file for ch{n} in 05-design/glyphs — kept the existing mark")
+
+    reply = reply_html(n)                                                      # endcard prompt
+    if reply:
+        s = re.sub(r'<p class="reply">.*?</p>', lambda _: reply, s, count=1, flags=re.S)
+    else:
+        print(f"  note: no prompt defined for ch{n} in PROMPTS — kept the existing prompt")
 
     open(page, "w", encoding="utf-8").write(s)
     print(f"{'created' if fresh else 'updated'}  ch{n}  {os.path.basename(page)}  ({readmin} min read)")
