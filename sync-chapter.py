@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-sync-chapter.py — build/refresh a public chapter page from the manuscript.
+sync-chapter.py: build/refresh a public chapter page from the manuscript.
 
 The manuscript ("../Building a Different Kind of Company - manuscript.md") is the
 single source of truth. This script regenerates, on the matching HTML page: the
@@ -24,7 +24,7 @@ Notes:
     single source of truth). If that file is missing, the existing glyph on the
     page is left untouched.
   * The endcard "Tell me" prompt is per-chapter; edit the PROMPTS table below.
-  * This does not touch index.html — flip that chapter's row from "soon" to a
+  * This does not touch index.html. Flip that chapter's row from "soon" to a
     link yourself when you're ready to list it.
 """
 import re, html, sys, os, glob, unicodedata
@@ -47,7 +47,7 @@ PROMPTS = {
         "Was that a disease, or just adulthood?",
         "Disease or adulthood"),
     3: ("Eighty million euros to walk away from the thing you built. Would you take it?",
-        "Eighty million"),  # DRAFT prompt — revise before ch3 goes public
+        "Eighty million"),  # DRAFT prompt, revise before ch3 goes public
 }
 
 
@@ -164,13 +164,13 @@ def sync(n):
     if glyph:
         s = re.sub(r'<svg class="glyph".*?</svg>', lambda _: glyph, s, count=1, flags=re.S)
     else:
-        print(f"  note: no glyph file for ch{n} in 05-design/glyphs — kept the existing mark")
+        print(f"  note: no glyph file for ch{n} in 05-design/glyphs, kept the existing mark")
 
     reply = reply_html(n)                                                      # endcard prompt
     if reply:
         s = re.sub(r'<p class="reply">.*?</p>', lambda _: reply, s, count=1, flags=re.S)
     else:
-        print(f"  note: no prompt defined for ch{n} in PROMPTS — kept the existing prompt")
+        print(f"  note: no prompt defined for ch{n} in PROMPTS, kept the existing prompt")
 
     open(page, "w", encoding="utf-8").write(s)
     print(f"{'created' if fresh else 'updated'}  ch{n}  {os.path.basename(page)}  ({readmin} min read)")

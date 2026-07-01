@@ -1,13 +1,13 @@
-# Ask the Company — chapter site (read.newworkbydesign.com)
+# Ask the Company: chapter site (read.newworkbydesign.com)
 
 Static site for the public chapters, served by GitHub Pages.
 (Signup stays on Kit at book.newworkbydesign.com; this domain is just for reading.)
 
 ## Files
-- `index.html` — book home (cover, pitch, chapter list, signup CTA)
-- `notice.html` — Chapter 1, "Notice"
-- `cover.png`, `social-share.png` — artwork + social/OG image
-- `signup/index.html` — redirect to the Kit signup
+- `index.html`: book home (cover, pitch, chapter list, signup CTA)
+- `notice.html`: Chapter 1, "Notice"
+- `cover.png`, `social-share.png`: artwork + social/OG image
+- `signup/index.html`: redirect to the Kit signup
 - `404.html`, `CNAME` (read.newworkbydesign.com)
 
 ## One-time setup
